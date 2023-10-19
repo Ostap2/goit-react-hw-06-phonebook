@@ -1,15 +1,22 @@
-import React from 'react';
+import { Input } from './Filter.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { setFilter } from 'redux/contactFilter';
 
-function Filter({ filter, handleFilterChange }) {
+const Filter = () => {
+  const { filter } = useSelector(state => state.filter);
+  const dispatch = useDispatch();
+
   return (
-    <input
-      type="text"
-      placeholder="Search contacts"
-      value={filter}
-      onChange={handleFilterChange}
-      className='search'
-    />
+    <>
+      <Input
+        placeholder="Search name"
+        type="text"
+        name="filter"
+        value={filter}
+        onChange={e => dispatch(setFilter(e.target.value))}
+      />
+    </>
   );
-}
+};
 
 export default Filter;
