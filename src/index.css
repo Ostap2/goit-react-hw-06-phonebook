@@ -1,7 +1,7 @@
-@import-normalize; /*bring in normalize.css styles*/
+@import-normalize;
 
 body {
-  background: gray;
+  background: linear-gradient(to right, #FFA500, #FF4500);
   font-size: 18px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

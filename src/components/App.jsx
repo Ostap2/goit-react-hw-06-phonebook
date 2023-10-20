@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
-import ContactForm from 'components/ContactForm/ContactForm';
-import ContactList from 'components/ContactList/ContactList';
-import Filter from 'components/Filter/Filter';
+import ContactForm from 'components/Contact/ContactForm/ContactForm';
+import ContactList from 'components/Contact/ContactItem/ContactList';
+import Filter from 'components/Contact/Filter/Filter';
 import { Container } from './App.styled';
 
 export default function App() {
