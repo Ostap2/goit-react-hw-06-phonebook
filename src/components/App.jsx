@@ -20,7 +20,7 @@ export default function App() {
   return (
     <Container>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={formSubmitHandler} />
+      <ContactForm />
       <h2>Contacts</h2>
       {contacts.length === 0 ? (
         <h3>No contacts</h3>

@@ -2,20 +2,30 @@ import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { Forma } from './ContactForm.styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/contactsSlice';
 
-export default function ContactForm({ onSubmit }) {
+export default function ContactForm() {
   const initialValues = { name: '', number: '' };
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
 
   const validationSchema = yup.object().shape({
-    name: yup.string().min(2, 'Name must be at least 4 characters').max(32, 'Name is too long').required('Name is required'),
+    name: yup.string().min(4, 'Name must be at least 4 characters').max(32, 'Name is too long').required('Name is required'),
     number: yup.string().min(6, 'Number must be at least 6 characters').max(16, 'Number is too long').required('Number is required'),
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    const newState = { id: nanoid(), ...values };
-    onSubmit(newState);
+    const existingContact = contacts.find(contact => contact.name === values.name);
 
-    resetForm();
+    if (existingContact) {
+      alert(`${values.name} is already in contacts`);
+    } else {
+      const newState = { id: nanoid(), ...values };
+      dispatch(addContact(newState));
+
+      resetForm();
+    }
   };
 
   return (
@@ -31,6 +41,7 @@ export default function ContactForm({ onSubmit }) {
           name="name"
           placeholder="name contact"
           id="nameId"
+          
         />
         <ErrorMessage name="name" component="div" className="error" />
         <label htmlFor="numId">Number</label>
