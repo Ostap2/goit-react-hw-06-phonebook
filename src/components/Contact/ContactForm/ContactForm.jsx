@@ -1,14 +1,14 @@
+// ContactForm.js
 import { Formik, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import { nanoid } from 'nanoid';
 import { Forma } from './ContactForm.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { useDispatch } from 'react-redux'; // Додайте імпорт useDispatch
+import { addContact } from 'redux/contactsSlice'; // Перевірте шлях до вашого slice
 
 export default function ContactForm() {
   const initialValues = { name: '', number: '' };
-  const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts);
+  const dispatch = useDispatch(); // Отримайте dispatch з Redux store
 
   const validationSchema = yup.object().shape({
     name: yup.string().min(4, 'Name must be at least 4 characters').max(32, 'Name is too long').required('Name is required'),
@@ -16,16 +16,10 @@ export default function ContactForm() {
   });
 
   const handleSubmit = (values, { resetForm }) => {
-    const existingContact = contacts.find(contact => contact.name === values.name);
+    const newState = { id: nanoid(), ...values };
+    dispatch(addContact(newState)); // Використайте dispatch для додавання контакту
 
-    if (existingContact) {
-      alert(`${values.name} is already in contacts`);
-    } else {
-      const newState = { id: nanoid(), ...values };
-      dispatch(addContact(newState));
-
-      resetForm();
-    }
+    resetForm();
   };
 
   return (
