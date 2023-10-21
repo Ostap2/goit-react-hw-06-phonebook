@@ -7,6 +7,7 @@ export const Input = styled.input`
   background-color: transparent;
   border-radius: 24px;
   border: black solid 3px;
+  display: block;     margin: 0 auto;
   &::placeholder {
     color: black;
     font-size: 16px;

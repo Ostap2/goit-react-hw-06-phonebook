@@ -27,7 +27,7 @@ export default function App() {
       ) : (
         <>
           <Filter />
-          {<ContactList />}
+          <ContactList />
         </>
       )}
     </Container>
