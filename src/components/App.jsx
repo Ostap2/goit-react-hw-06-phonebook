@@ -9,14 +9,6 @@ export default function App() {
   const { contacts } = useSelector(state => state.contacts);
   const dispatch = useDispatch();
 
-  const formSubmitHandler = contact => {
-    if (contacts.find(({ name }) => name === contact.name)) {
-      return alert(`${contact.name} is already in contacts`);
-    }
-
-    dispatch(addContact(contact));
-  };
-
   return (
     <Container>
       <h1>Phonebook</h1>

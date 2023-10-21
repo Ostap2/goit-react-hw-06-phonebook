@@ -41,7 +41,6 @@ export default function ContactForm() {
           name="name"
           placeholder="name contact"
           id="nameId"
-          
         />
         <ErrorMessage name="name" component="div" className="error" />
         <label htmlFor="numId">Number</label>
